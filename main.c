@@ -50,9 +50,10 @@ void setup() {
   wdt_enable (WDTO_8S);//watchdog
   pinMode(SPKpin, OUTPUT) ;
   Serial.begin(9600) ; //serial unnecessary except debugging as needed
-  Serial.println("Eric's Arduino Satellite CW Downlink") ;
-  Serial.println("by Eric William") ;
-  Serial.println("www.mkmer.org") ;
+  Serial.println("GateSat-01 initializing") ;
+  Serial.println("CW DL code by Eric William") ;
+  Serial.println("...") ; //Put credits for other things here.
+  Serial.println("Initialized") ;
   //Serial.println("") ;
   }
 
@@ -60,7 +61,7 @@ void loop() {
   resetWatchdog();
   //checksensors(); check sensor readings here
   decidemode();//decide mode of transmit: CW vs Tone depednding on interval
-  //modeindicator(); add mode indicator LED etc here
+  //modeindicator(); add mode indicator LED etc here (DO WE WANT TO GET RID OF THIS? AS IT WILL BE IN SPACE.
   initiateTX();//Initiate the decided form of TX and proceeds to approprite TX void
   }
 
