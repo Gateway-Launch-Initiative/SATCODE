@@ -88,7 +88,7 @@ void resetWatchdog() {
 void TransmitMorse(){//Make sure these are all CAPS or will not TX
    sendmsg("?????") ; //Preamble to begin receiving
    resetWatchdog();
-   sendmsg("AURORA1 SAT/") ;
+   sendmsg("GATESAT1/") ;
    resetWatchdog();
    sendmsg("OS,OK/") ;
    resetWatchdog();
@@ -112,7 +112,7 @@ void TransmitMorse(){//Make sure these are all CAPS or will not TX
    resetWatchdog();
    sendmsg("RSSI,4DBM/") ;
    resetWatchdog();
-   sendmsg("WWW.MKME.ORG...") ; //All this code needs to be replaced with the INT to CHAR values from monitoring/systems
+   //All this code needs to be replaced with the INT to CHAR values from monitoring/systems
    //sendmsg (Batt1);
    delay(3000) ;
    }
