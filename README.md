@@ -6,7 +6,7 @@ Probecode
 ![Build Status](https://goo.gl/mYwr7u)
 ![Language Grade: JavaScript](https://goo.gl/SMkehA)
 
-## Probecode for Gatesat1 for the Nasa Cubes in Space initiative.
+## satcode for Gatesat1 for the Nasa CubeSat Launch initiative.
 
 [dependencies-badge]: https://goo.gl/gbCEnm
 [devDependencies-badge]: https://goo.gl/UbqCPd
