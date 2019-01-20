@@ -1,79 +1,19 @@
-#include "headers.h"
-int SPKpin = 3; //Needs to be PWM pin for spk/radio output
-int Batt1 = 7.4;// Initialize & Globalize Battery One Level
-int TXmode=LOW;//Toggle TX mode between CW and Tone
-int val;//used for sensor to tone mapping
-long previousMillis = 0; //millis used for time before toggle TX mode
-long interval = 5000; // interval (milliseconds) for transmit tone mode (transmit mode toggle)
+#include "vars.c"
+#include <avr/wdt.h>
 
-struct t_mtab { char c, pat; } ;
-struct t_mtab morsetab[] = {
-  	{'.', 106},
-	{',', 115},
-	{'?', 76},
-	{'/', 41},
-	{'A', 6},
-	{'B', 17},
-	{'C', 21},
-	{'D', 9},
-	{'E', 2},
-	{'F', 20},
-	{'G', 11},
-	{'H', 16},
-	{'I', 4},
-	{'J', 30},
-	{'K', 13},
-	{'L', 18},
-	{'M', 7},
-	{'N', 5},
-	{'O', 15},
-	{'P', 22},
-	{'Q', 27},
-	{'R', 10},
-	{'S', 8},
-	{'T', 3},
-	{'U', 12},
-	{'V', 24},
-	{'W', 14},
-	{'X', 25},
-	{'Y', 29},
-	{'Z', 19},
-	{'1', 62},
-	{'2', 60},
-	{'3', 56},
-	{'4', 48},
-	{'5', 32},
-	{'6', 33},
-	{'7', 35},
-	{'8', 39},
-	{'9', 47},
-	{'0', 63}
-} ;
-
-#define N_MORSE  (sizeof(morsetab)/sizeof(morsetab[0]))
-#define SPEED  (30)  //default 12 25 still stable 35 working
-#define DOTLEN  (1200/SPEED)
-#define DASHLEN  (3*(1200/SPEED))
-
-void
-dash()
-{
+void dash() {
   analogWrite(SPKpin, 128) ;//128 default
   delay(DASHLEN);
   analogWrite(SPKpin, 0) ;
   delay(DOTLEN) ;
 }
-void
-dit()
-{
+void dit() {
   analogWrite(SPKpin, 128) ;//128 default
   delay(DOTLEN);
   analogWrite(SPKpin, 0) ;
   delay(DOTLEN);
 }
-void
-send(char c)
-{
+void send(char c) {
   int i ;
   if (c == ' ') {
     Serial.print(c) ;
@@ -99,14 +39,11 @@ send(char c)
   /* if we drop off the end, then we send a space */
   Serial.print("?") ;
 }
-void
-sendmsg(char *str)
-{
+void sendmsg(char *str) {
   while (*str)
     send(*str++) ;
   Serial.println("");
 }
-#include <avr/wdt.h>
 
 void setup() {
   wdt_disable();
@@ -120,7 +57,7 @@ void setup() {
   }
 
 void loop() {
-  wdt_reset ();//Reset Watchdog
+  resetWatchdog();
   //checksensors(); check sensor readings here
   decidemode();//decide mode of transmit: CW vs Tone depednding on interval
   //modeindicator(); add mode indicator LED etc here
@@ -142,35 +79,39 @@ void decidemode(){
 void initiateTX(){
   if (TXmode ==HIGH) TransmitMorse();//Send CW
   else TransmitTone(); //Tone transmit mode based on sensor reading
-  }
+}
+
+void resetWatchdog() {
+	wdt_reset();
+}
 
 void TransmitMorse(){//Make sure these are all CAPS or will not TX
    sendmsg("?????") ; //Preamble to begin receiving
-   wdt_reset ();//Reset Watchdog
+   resetWatchdog();
    sendmsg("AURORA1 SAT/") ;
-   wdt_reset ();//Reset Watchdog
+   resetWatchdog();
    sendmsg("OS,OK/") ;
-   wdt_reset ();//Reset Watchdog
+   resetWatchdog();
    sendmsg("SAFEMODE,NO/") ;
-   wdt_reset ();//Reset Watchdog
+   resetWatchdog();
    sendmsg("WATCHDOG,4/") ;
-   wdt_reset ();//Reset Watchdog
+   resetWatchdog();
    sendmsg("ITEMP,0C/ ") ;
-   wdt_reset ();//Reset Watchdog
+   resetWatchdog();
    sendmsg("LUX,22/ ") ;
-   wdt_reset ();//Reset Watchdog
+   resetWatchdog();
    sendmsg("TELEMETRY,OK/ ") ;
-   wdt_reset ();//Reset Watchdog
+   resetWatchdog();
    sendmsg("ANTENNA,DEP/") ;
-   wdt_reset ();//Reset Watchdog
+   resetWatchdog();
    sendmsg("PV,520MV/") ;
-   wdt_reset ();//Reset Watchdog
+   resetWatchdog();
    sendmsg("BATT1,620MV/") ;
-   wdt_reset ();//Reset Watchdog
+   resetWatchdog();
    sendmsg("BUSA,4MA/") ;
-   wdt_reset ();//Reset Watchdog
+   resetWatchdog();
    sendmsg("RSSI,4DBM/") ;
-   wdt_reset ();//Reset Watchdog
+   resetWatchdog();
    sendmsg("WWW.MKME.ORG...") ; //All this code needs to be replaced with the INT to CHAR values from monitoring/systems
    //sendmsg (Batt1);
    delay(3000) ;
