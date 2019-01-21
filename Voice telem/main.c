@@ -1,6 +1,3 @@
-*/
-
-
 int SPKpin = 3; //Needs to be PWM pin for spk/radio output
 int Batt1;// Globalize Batt1 Variable
 int temp1 = 23; //test temp for bat temp 
@@ -8,6 +5,7 @@ int temp2 = 25; //test temp for CPU temp
 int time; //Time Variable
 
 #include "vars.c"
+<<<<<<< HEAD
 #include <avr/wdt.h>
 #include "../talkie.h"
 
@@ -82,6 +80,10 @@ void sayLetter() {
 		//will add more once tested as I dont think its working as the A,B,C, and D vals arnt highlighting unlike 1234 and 5.
 
 }
+=======
+#include <../avr/wdt.h>
+#include "../talkie.h"
+>>>>>>> 725091f63a02bdf72c6c89f945d986b539fa48e9
 
 void setup() {
   pinMode(SPKpin, OUTPUT) ; //this is unecessary for Talkie as it is hardcoded to 3 in Lib

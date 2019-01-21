@@ -1,5 +1,5 @@
 #include "vars.c"
-#include <avr/wdt.h>
+#include <../avr/wdt.h>
 
 void dash() {
   analogWrite(SPKpin, 128) ;//128 default
