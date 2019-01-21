@@ -200,7 +200,7 @@ void Batt(){
   Serial.println(Batt1);
     }
 void Watchdog(){
-  //input Watchdog code here
+  wdt_enable(WDTO_8S);
   }
 void Solar(){
   //input Solar Cell monitoring & code here
