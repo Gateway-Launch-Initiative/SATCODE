@@ -3,11 +3,85 @@
 
 int SPKpin = 3; //Needs to be PWM pin for spk/radio output
 int Batt1;// Globalize Batt1 Variable
-int temp1 = 23;
+int temp1 = 23; //test temp for bat temp 
+int temp2 = 25; //test temp for CPU temp
+int time; //Time Variable
 
 #include "vars.c"
 #include <avr/wdt.h>
 #include "talkie.h"
+
+/* Say any number between -999,999 and 999,999 */
+void sayNumber(long n) {
+	if (n < 0) {
+		voice.say(spMINUS);
+		sayNumber(-n);
+	}
+	else if (n == 0) {
+		voice.say(spZERO);
+	}
+	else {
+		if (n >= 1000) {
+			int thousands = n / 1000;
+			sayNumber(thousands);
+			voice.say(spTHOUSAND);
+			n %= 1000;
+			if ((n > 0) && (n < 100)) voice.say(spAND);
+		}
+		if (n >= 100) {
+			int hundreds = n / 100;
+			sayNumber(hundreds);
+			voice.say(spHUNDRED);
+			n %= 100;
+			if (n > 0) voice.say(spAND);
+		}
+		if (n > 19) {
+			int tens = n / 10;
+			switch (tens) {
+			case 2: voice.say(spTWENTY); break;
+			case 3: voice.say(spTHIR_); voice.say(spT); break;
+			case 4: voice.say(spFOUR); voice.say(spT);  break;
+			case 5: voice.say(spFIF_);  voice.say(spT); break;
+			case 6: voice.say(spSIX);  voice.say(spT); break;
+			case 7: voice.say(spSEVEN);  voice.say(spT); break;
+			case 8: voice.say(spEIGHT);  voice.say(spT); break;
+			case 9: voice.say(spNINE);  voice.say(spT); break;
+			}
+			n %= 10;
+		}
+		switch (n) {
+		case 1: voice.say(spONE); break;
+		case 2: voice.say(spTWO); break;
+		case 3: voice.say(spTHREE); break;
+		case 4: voice.say(spFOUR); break;
+		case 5: voice.say(spFIVE); break;
+		case 6: voice.say(spSIX); break;
+		case 7: voice.say(spSEVEN); break;
+		case 8: voice.say(spEIGHT); break;
+		case 9: voice.say(spNINE); break;
+		case 10: voice.say(spTEN); break;
+		case 11: voice.say(spELEVEN); break;
+		case 12: voice.say(spTWELVE); break;
+		case 13: voice.say(spTHIR_); voice.say(sp_TEEN); break;
+		case 14: voice.say(spFOUR); voice.say(sp_TEEN); break;
+		case 15: voice.say(spFIF_); voice.say(sp_TEEN); break;
+		case 16: voice.say(spSIX); voice.say(sp_TEEN); break;
+		case 17: voice.say(spSEVEN); voice.say(sp_TEEN); break;
+		case 18: voice.say(spEIGHT); voice.say(sp_TEEN); break;
+		case 19: voice.say(spNINE); voice.say(sp_TEEN); break;
+		}
+	}
+}
+
+//Say any letter from A to Z
+void sayLetter() {
+	case A: voice.say(spALPHA);
+	case B: voice.say(spBRAVO);
+	case C: voice.SAY(spCHARLIE);
+	case D: voice.say(spDELTA);
+		//will add more once tested as I dont think its working as the A,B,C, and D vals arnt highlighting unlike 1234 and 5.
+
+}
 
 void setup() {
   pinMode(SPKpin, OUTPUT) ; //this is unecessary for Talkie as it is hardcoded to 3 in Lib
@@ -16,9 +90,9 @@ void setup() {
   Serial.println("Voice DL code by Eric William") ;
   Serial.println("Initialized") ;
   //Serial.println("") ;
-  voice.say(spSTART);//say start to indicate we actually started :)
-  voice.say(spSTART);  //repeat because I'm slow
-  voice.say(spSTART);  //Repeat and smack user for not listening the first 2 times
+  voice.say(spSTART);//say start to indicate we actually started
+  voice.say(spSTART);  
+  voice.say(spSTART);  
   delay (2000);
   }
 
@@ -31,18 +105,27 @@ void loop() {
 
 
 void initiateTX(){
-  voice.say(spREADY);  //Yep
+  voice.say(spREADY);  
   sayNumber(Batt1);
   voice.say(spVOLTS);
-  voice.say(spPROBE);
-  //voice.say(spREADY);
+  voice.say(spBREAK);
+
   voice.say(spTEMPERATURE);
-  sayNumber(temp1);
+  sayNumber(temp1); //Bat Temp
   voice.say(spDEGREES);
-  voice.say(spSTABILISER);
-  voice.say(spON); 
+  voice.say(spCELCIUS);
+  voice.say(spBREAK);
+
+  voice.say(spTEMPERATURE);
+  sayNumber(temp2); //CPU temp
+  voice.say(spDEGREES);
+  voice.say(spCELCIUS);
+  voice.say(spBREAK);
+
   voice.say(spRADIOS);
-  voice.say(spMANUAL);
+  voice.say(spAUTOMATIC);
+  voice.say(spBREAK);
+
   voice.say(spZONE);
   voice.say(spONE);
   voice.say(spINDICATED);
@@ -51,25 +134,21 @@ void initiateTX(){
   voice.say(spTWO);
   voice.say(spNO);
   voice.say(spERROR);
- voice.say(spPROBE);
- voice.say(spTWO);
- voice.say(spPRESSURE);
- voice.say(spINCREASING);
- voice.say(spTWENTY);
+  voice.say(spZONE);
+  voice.say(spTHREE);
+  voice.say(spNO);
+  voice.say(spERROR);
+  voice.say(spBREAK);
+
  voice.say(spPROBE);
  voice.say(spTHREE);
  voice.say(spCURRENT);
  voice.say(spTOO_LOW);
- voice.say(spZONE);
- voice.say(spFOUR);
- voice.say(spINDICATED);
- voice.say(spTEMPERATURE);
- voice.say(spERROR);
- voice.say(spSPEED);
- sayNumber(1700);
  voice.say(spBREAK);
- 
- 
+
+ voice.say(spTIME);
+ sayNumber(time)
+ voice.say(spREPEAT)
  delay(2000);
  
   }
