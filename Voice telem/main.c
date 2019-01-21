@@ -105,50 +105,92 @@ void loop() {
 
 
 void initiateTX(){
-  voice.say(spREADY);  
+  voice.say(spREADY); 
+  wdt_reset();
   sayNumber(Batt1);
+  wdt_reset();
   voice.say(spVOLTS);
+  wdt_reset();
   voice.say(spBREAK);
+  wdt_reset();
 
   voice.say(spTEMPERATURE);
+  wdt_reset();
   sayNumber(temp1); //Bat Temp
+  wdt_reset();
   voice.say(spDEGREES);
+  wdt_reset();
   voice.say(spCELCIUS);
+  wdt_reset();
   voice.say(spBREAK);
+  wdt_reset();
 
   voice.say(spTEMPERATURE);
+  wdt_reset();
   sayNumber(temp2); //CPU temp
+  wdt_reset();
   voice.say(spDEGREES);
+  wdt_reset();
   voice.say(spCELCIUS);
+  wdt_reset();
   voice.say(spBREAK);
 
+
+  wdt_reset();
   voice.say(spRADIOS);
+  wdt_reset();
   voice.say(spAUTOMATIC);
+  wdt_reset();
   voice.say(spBREAK);
+  wdt_reset();
 
+  wdt_reset();
   voice.say(spZONE);
+  wdt_reset();
   voice.say(spONE);
+  wdt_reset();
   voice.say(spINDICATED);
+  wdt_reset();
   voice.say(spALERT);
+  wdt_reset();
   voice.say(spZONE);
+  wdt_reset();
   voice.say(spTWO);
+  wdt_reset();
   voice.say(spNO);
+  wdt_reset();
   voice.say(spERROR);
+  wdt_reset();
   voice.say(spZONE);
+  wdt_reset();
   voice.say(spTHREE);
+  wdt_reset();
   voice.say(spNO);
+  wdt_reset();
   voice.say(spERROR);
+  wdt_reset();
   voice.say(spBREAK);
 
+  wdt_reset();
  voice.say(spPROBE);
+ wdt_reset();
  voice.say(spTHREE);
+ wdt_reset();
  voice.say(spCURRENT);
+ wdt_reset();
  voice.say(spTOO_LOW);
+ wdt_reset();
  voice.say(spBREAK);
 
+ wdt_reset();
  voice.say(spTIME);
- sayNumber(time)
- voice.say(spREPEAT)
+ wdt_reset();
+ sayNumber(time);
+ wdt_reset();
+ voice.say(spREPEAT);
+ wdt_reset();
+ voice.say(spREPEAT);
+ wdt_reset();
  delay(2000);
  
   }
