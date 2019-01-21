@@ -1,104 +1,103 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+# Prerequisites
 
-# C extensions
+*.d
+
+
+
+# Object files
+
+*.o
+
+*.ko
+
+*.obj
+
+*.elf
+
+
+
+# Linker output
+
+*.ilk
+
+*.map
+
+*.exp
+
+
+
+# Precompiled Headers
+
+*.gch
+
+*.pch
+
+
+
+# Libraries
+
+*.lib
+
+*.a
+
+*.la
+
+*.lo
+
+
+
+# Shared objects (inc. Windows DLLs)
+
+*.dll
+
 *.so
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+*.so.*
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+*.dylib
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
 
-# Translations
-*.mo
-*.pot
+# Executables
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
+*.exe
 
-# Flask stuff:
-instance/
-.webassets-cache
+*.out
 
-# Scrapy stuff:
-.scrapy
+*.app
 
-# Sphinx documentation
-docs/_build/
+*.i*86
 
-# PyBuilder
-target/
+*.x86_64
 
-# Jupyter Notebook
-.ipynb_checkpoints
+*.hex
 
-# pyenv
-.python-version
 
-# celery beat schedule file
-celerybeat-schedule
 
-# SageMath parsed files
-*.sage.py
+# Debug files
 
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
+*.dSYM/
 
-# Spyder project settings
-.spyderproject
-.spyproject
+*.su
 
-# Rope project settings
-.ropeproject
+*.idb
 
-# mkdocs documentation
-/site
+*.pdb
 
-# mypy
-.mypy_cache/
+
+
+# Kernel Module Compile Results
+
+*.mod*
+
+*.cmd
+
+.tmp_versions/
+
+modules.order
+
+Module.symvers
+
+Mkfile.old
+
+dkms.conf
