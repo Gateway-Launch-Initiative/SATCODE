@@ -9,7 +9,7 @@ int time; //Time Variable
 
 #include "vars.c"
 #include <avr/wdt.h>
-#include "talkie.h"
+#include "../talkie.h"
 
 /* Say any number between -999,999 and 999,999 */
 void sayNumber(long n) {
