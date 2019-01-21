@@ -4,7 +4,7 @@ int temp1 = 23;
 
 #include "vars.c"
 #include <../avr/wdt.h>
-#include "talkie.h"
+#include "../talkie.h"
 
 void setup() {
   pinMode(SPKpin, OUTPUT) ; //this is unecessary for Talkie as it is hardcoded to 3 in Lib
