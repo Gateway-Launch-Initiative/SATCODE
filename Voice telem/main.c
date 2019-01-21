@@ -3,7 +3,7 @@ int Batt1;// Globalize Batt1 Variable
 int temp1 = 23;
 
 #include "vars.c"
-#include <avr/wdt.h>
+#include <../avr/wdt.h>
 #include "talkie.h"
 
 void setup() {
