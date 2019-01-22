@@ -8,7 +8,7 @@ int Z2ERR; //zone two error (Middle 1U of sat)
 int Z3ERR; //zone three error (Lower 1U of Sat)
 
 #include "vars.c"
-#include "../talkie.h"
+#include "talkie.h"
 #include <../avr/wdt.h>
 
 /* Say any number between -999,999 and 999,999 */
