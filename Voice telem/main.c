@@ -1,3 +1,4 @@
+void ints{
 int SPKpin = 3; //Needs to be PWM pin for spk/radio output
 int Batt1;// Globalize Batt1 Variable
 int batTemp = 23; //test temp for bat temp 
@@ -6,6 +7,7 @@ int time; //Time Variable
 int Z1ERR; //zone one error (Top 1U of sat)
 int Z2ERR; //zone two error (Middle 1U of sat)
 int Z3ERR; //zone three error (Lower 1U of Sat)
+}
 
 #include "voice select.c" //local voice library
 #include "talkie.h" //talkie library for voice
@@ -98,8 +100,8 @@ void setup() {
   }
 
 void loop() {
-   //checksensors(); check sensor readings here
-    //modeindicator(); add mode indicator LED etc here
+  //checksensors(); check sensor readings here
+  //modeindicator(); add mode indicator LED etc here
   Batt();
   initiateTX();//Initiate the decided form of TX and proceeds to approprite TX void
   }
@@ -125,117 +127,117 @@ void initiateTX(){
 	voice.say(spINFORMATION)
 	//wdt_reset();
 	voice.say(spREADY); 
-  //wdt_reset();
-  voice.sat(spbatt)
-  //wdt_reset();
-  sayNumber(Batt1);
-  //wdt_reset();
-  voice.say(spVOLTS);
-  //wdt_reset();
-  voice.say(spBREAK);
-  //wdt_reset();
+    //wdt_reset();
+    voice.sat(spbatt)
+    //wdt_reset();
+    sayNumber(Batt1);
+    //wdt_reset();
+    voice.say(spVOLTS);
+    //wdt_reset();
+    voice.say(spBREAK);
+    //wdt_reset();
 
-  voice.say(spTEMPERATURE);
-  //wdt_reset();
-  sayNumber(batTemp); //Bat Temp
-  //wdt_reset();
-  voice.say(spDEGREES);
-  //wdt_reset();
-  voice.say(spCELCIUS);
-  //wdt_reset();
-  voice.say(spBREAK);
-  //wdt_reset();
+    voice.say(spTEMPERATURE);
+    //wdt_reset();
+	sayNumber(batTemp); //Bat Temp
+	//wdt_reset();
+	voice.say(spDEGREES);
+	//wdt_reset();
+	voice.say(spCELCIUS);
+	//wdt_reset();
+	voice.say(spBREAK);
+	//wdt_reset();
 
-  voice.say(spTEMPERATURE);
-  //wdt_reset();
-  sayNumber(cpuTemp); //CPU temp
-  //wdt_reset();
-  voice.say(spDEGREES);
-  //wdt_reset();
-  voice.say(spCELCIUS);
-  //wdt_reset();
-  voice.say(spBREAK);
+	voice.say(spTEMPERATURE);
+	//wdt_reset();
+	sayNumber(cpuTemp); //CPU temp
+	//wdt_reset();
+	voice.say(spDEGREES);
+	//wdt_reset();
+	voice.say(spCELCIUS);
+	//wdt_reset();
+	voice.say(spBREAK);
 
 
-  //wdt_reset();
-  voice.say(spRADIOS);
-  //wdt_reset();
-  voice.say(spAUTOMATIC);
-  //wdt_reset();
-  voice.say(spBREAK);
-  //wdt_reset();
+	//wdt_reset();
+	voice.say(spRADIOS);
+	//wdt_reset();
+	voice.say(spAUTOMATIC);
+	//wdt_reset();
+	voice.say(spBREAK);
+	//wdt_reset();
 
-  voice.say(spZONE);
-  //wdt_reset();
-  voice.say(spONE);
-  //wdt_reset();
-  if (Z1ERR = 1) {
-	  voice.say(spINDICATED);
-	  //wdt_reset();
-	  voice.say(spALERT);
-	  //wdt_reset();
-  }
-  else {
-	  voice.say(spNO);
-	  //wdt_reset();
-	  voice.say(spERROR)
-	  //wdt_reset();
-  }
-  voice.say(spZONE);
-  //wdt_reset();
-  voice.say(spTWO);
-  //wdt_reset();
-  if (Z2ERR = 1) {
-	  voice.say(spINDICATED);
-	  //wdt_reset();
-	  voice.say(spALERT);
-	  //wdt_reset();
-  }
-  else {
-	  voice.say(spNO);
-	  //wdt_reset();
-	  voice.say(spERROR);
-	  //wdt_reset();
-  }
-  voice.say(spZONE);
-  //wdt_reset();
-  voice.say(spTHREE);
-  //wdt_reset();
+	voice.say(spZONE);
+	//wdt_reset();
+	voice.say(spONE);
+	//wdt_reset();
+	if (Z1ERR = 1) {
+		voice.say(spINDICATED);
+		//wdt_reset();
+		voice.say(spALERT);
+		//wdt_reset();
+	}
+		else {
+			voice.say(spNO);
+			//wdt_reset();
+			voice.say(spERROR)
+			//wdt_reset();
+		}
+	voice.say(spZONE);
+	//wdt_reset();
+	voice.say(spTWO);
+	//wdt_reset();
+	if (Z2ERR = 1) {
+		voice.say(spINDICATED);
+		//wdt_reset();
+		voice.say(spALERT);
+		//wdt_reset();
+	}
+		else {
+			voice.say(spNO);
+			//wdt_reset();
+			voice.say(spERROR);
+			//wdt_reset();
+		}
+	voice.say(spZONE);
+	//wdt_reset();
+	voice.say(spTHREE);
+	//wdt_reset();
   if (Z3ERR = 1) {
 	  voice.say(spINDICATED);
 	  //wdt_reset();
 	  voice.say(spALERT);
 	  //wdt_reset();
   }
-  else {
-	  voice.say(spNO);
-	  //wdt_reset();
-	  voice.say(spERROR);
-	  //wdt_reset();
-  }
-  voice.say(spBREAK);
+		else {
+			voice.say(spNO);
+			//wdt_reset();
+			voice.say(spERROR);
+			//wdt_reset();
+		}
+	voice.say(spBREAK);
 
-  //wdt_reset();
- voice.say(spPROBE);
- //wdt_reset();
- voice.say(spTHREE);
- //wdt_reset();
- voice.say(spCURRENT);
- //wdt_reset();
- voice.say(spTOO_LOW);
- //wdt_reset();
- voice.say(spBREAK);
+	//wdt_reset();
+	voice.say(spPROBE);
+	//wdt_reset();
+	voice.say(spTHREE);
+	//wdt_reset();
+	voice.say(spCURRENT);
+	//wdt_reset();
+	voice.say(spTOO_LOW);
+	//wdt_reset();
+	voice.say(spBREAK);
 
- //wdt_reset();
- voice.say(spTIME);
- //wdt_reset();
- sayNumber(time);
- //wdt_reset();
- voice.say(spREPEAT);
- //wdt_reset();
- voice.say(spREPEAT);
- //wdt_reset();
- delay(2000);
+	//wdt_reset();
+	voice.say(spTIME);
+	//wdt_reset();
+	sayNumber(time);
+	//wdt_reset();
+	voice.say(spREPEAT);
+	//wdt_reset();
+	voice.say(spREPEAT);
+	//wdt_reset();
+	delay(2000);
  
   }
 
@@ -244,9 +246,11 @@ void Batt(){
   Batt1 = analogRead(0) /10;  //correct this later with proper voltage divider code
   Serial.println(Batt1);
     }
+
 void Watchdog(){
   //wdt_enable(WDTO_8S);
   }
+
 void Solar(){
   //input Solar Cell monitoring & code here
   }
