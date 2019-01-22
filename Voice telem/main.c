@@ -107,7 +107,27 @@ void loop() {
 
 
 void initiateTX(){
-  voice.say(spREADY); 
+	voice.say(spGOLF);
+	wdt_reset();
+    voice.say(spALPHA);
+	wdt_reset();
+	voice.say(spTANGO);
+	wdt_reset();
+	voice.say(spECHO);
+	wdt_reset();
+	voice.say(spSIERRA);
+	wdt_reset();
+	voice.sat(spALPHA);
+	wdt_reset();
+	voice.sat(spTANGO);
+	wdt_reset();
+	voice.say(spONE)
+	wdt_reset();
+	voice.say(spINFORMATION)
+	wdt_reset();
+	voice.say(spREADY); 
+  wdt_reset();
+  voice.sat(spbatt)
   wdt_reset();
   sayNumber(Batt1);
   wdt_reset();
