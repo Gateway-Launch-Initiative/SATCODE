@@ -3,10 +3,9 @@ int Batt1;// Globalize Batt1 Variable
 int batTemp = 23; //test temp for bat temp 
 int cpuTemp = 25; //test temp for CPU temp
 int time; //Time Variable
-int Z1ERR; //zone one error
-int Z2ERR; //zone two error
-int Z3ERR; //zone three error
-int Z4ERR; //zone 4 error
+int Z1ERR; //zone one error (Top 1U of sat)
+int Z2ERR; //zone two error (Middle 1U of sat)
+int Z3ERR; //zone three error (Lower 1U of Sat)
 
 #include "vars.c"
 #include "../talkie.h"
