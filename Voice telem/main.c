@@ -7,7 +7,7 @@ int Z1ERR; //zone one error (Top 1U of sat)
 int Z2ERR; //zone two error (Middle 1U of sat)
 int Z3ERR; //zone three error (Lower 1U of Sat)
 
-#include "vars.c"
+#include "voice select.c"
 #include "talkie.h"
 #include <../avr/wdt.h>
 
