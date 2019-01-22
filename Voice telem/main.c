@@ -1,12 +1,16 @@
 int SPKpin = 3; //Needs to be PWM pin for spk/radio output
 int Batt1;// Globalize Batt1 Variable
-int temp1 = 23; //test temp for bat temp 
-int temp2 = 25; //test temp for CPU temp
+int batTemp = 23; //test temp for bat temp 
+int cpuTemp = 25; //test temp for CPU temp
 int time; //Time Variable
+int Z1ERR; //zone one error
+int Z2ERR; //zone two error
+int Z3ERR; //zone three error
+int Z4ERR; //zone 4 error
 
 #include "vars.c"
-#include <avr/wdt.h>
 #include "../talkie.h"
+#include <../avr/wdt.h>
 
 /* Say any number between -999,999 and 999,999 */
 void sayNumber(long n) {
@@ -72,15 +76,14 @@ void sayNumber(long n) {
 
 //Say any letter from A to Z
 void sayLetter() {
-	case A: voice.say(spALPHA);
-	case B: voice.say(spBRAVO);
-	case C: voice.SAY(spCHARLIE);
-	case D: voice.say(spDELTA);
-		//will add more once tested as I dont think its working as the A,B,C, and D vals arnt highlighting unlike 1234 and 5.
+	case a: voice.say(spALPHA);
+	case b: voice.say(spBRAVO);
+	case c: voice.SAY(spCHARLIE);
+	case d: voice.say(spDELTA);
+		//will add more once tested as I dont think its working as the A,B,C, and D vals arnt highlighting unlike the numbers.
 
 }
-#include <../avr/wdt.h>
-#include "../talkie.h"
+
 
 void setup() {
   pinMode(SPKpin, OUTPUT) ; //this is unecessary for Talkie as it is hardcoded to 3 in Lib
@@ -115,7 +118,7 @@ void initiateTX(){
 
   voice.say(spTEMPERATURE);
   wdt_reset();
-  sayNumber(temp1); //Bat Temp
+  sayNumber(batTemp); //Bat Temp
   wdt_reset();
   voice.say(spDEGREES);
   wdt_reset();
@@ -126,7 +129,7 @@ void initiateTX(){
 
   voice.say(spTEMPERATURE);
   wdt_reset();
-  sayNumber(temp2); //CPU temp
+  sayNumber(cpuTemp); //CPU temp
   wdt_reset();
   voice.say(spDEGREES);
   wdt_reset();
@@ -143,31 +146,54 @@ void initiateTX(){
   voice.say(spBREAK);
   wdt_reset();
 
-  wdt_reset();
   voice.say(spZONE);
   wdt_reset();
   voice.say(spONE);
   wdt_reset();
-  voice.say(spINDICATED);
-  wdt_reset();
-  voice.say(spALERT);
-  wdt_reset();
+  if (Z1ERR = 1) {
+	  voice.say(spINDICATED);
+	  wdt_reset();
+	  voice.say(spALERT);
+	  wdt_reset();
+  }
+  else {
+	  voice.say(spNO);
+	  wdt_reset();
+	  voice.say(spERROR)
+	  wdt_reset();
+  }
   voice.say(spZONE);
   wdt_reset();
   voice.say(spTWO);
   wdt_reset();
-  voice.say(spNO);
-  wdt_reset();
-  voice.say(spERROR);
-  wdt_reset();
+  if (Z2ERR = 1) {
+	  voice.say(spINDICATED);
+	  wdt_reset();
+	  voice.say(spALERT);
+	  wdt_reset();
+  }
+  else {
+	  voice.say(spNO);
+	  wdt_reset();
+	  voice.say(spERROR);
+	  wdt_reset();
+  }
   voice.say(spZONE);
   wdt_reset();
   voice.say(spTHREE);
   wdt_reset();
-  voice.say(spNO);
-  wdt_reset();
-  voice.say(spERROR);
-  wdt_reset();
+  if (Z3ERR = 1) {
+	  voice.say(spINDICATED);
+	  wdt_reset();
+	  voice.say(spALERT);
+	  wdt_reset();
+  }
+  else {
+	  voice.say(spNO);
+	  wdt_reset();
+	  voice.say(spERROR);
+	  wdt_reset();
+  }
   voice.say(spBREAK);
 
   wdt_reset();
