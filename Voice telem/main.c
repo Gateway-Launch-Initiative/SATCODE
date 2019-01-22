@@ -88,7 +88,7 @@ void setup() {
   pinMode(SPKpin, OUTPUT) ; //this is unecessary for Talkie as it is hardcoded to 3 in Lib
   Serial.begin(9600) ; //serial unnecessary except debugging as needed
   Serial.println("GateSat-01 initializing") ;
-  Serial.println("Voice DL code by Eric William") ;
+  Serial.println("Voice DL code by Carsten Gallini") ;
   Serial.println("Initialized") ;
   //Serial.println("") ;
   voice.say(spSTART);//say start to indicate we actually started
