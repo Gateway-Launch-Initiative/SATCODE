@@ -7,9 +7,9 @@ int Z1ERR; //zone one error (Top 1U of sat)
 int Z2ERR; //zone two error (Middle 1U of sat)
 int Z3ERR; //zone three error (Lower 1U of Sat)
 
-#include "voice select.c"
-#include "talkie.h"
-#include <../avr/wdt.h>
+#include "voice select.c" //local voice library
+#include "talkie.h" //talkie library for voice
+//#include <avr/wdt.h> //watch dog timer library (requires Aurdrino Mega board)
 
 /* Say any number between -999,999 and 999,999 */
 void sayNumber(long n) {
@@ -107,134 +107,134 @@ void loop() {
 
 void initiateTX(){
 	voice.say(spGOLF);
-	wdt_reset();
+	//wdt_reset();
     voice.say(spALPHA);
-	wdt_reset();
+	//wdt_reset();
 	voice.say(spTANGO);
-	wdt_reset();
+	//wdt_reset();
 	voice.say(spECHO);
-	wdt_reset();
+	//wdt_reset();
 	voice.say(spSIERRA);
-	wdt_reset();
+	//wdt_reset();
 	voice.sat(spALPHA);
-	wdt_reset();
+	//wdt_reset();
 	voice.sat(spTANGO);
-	wdt_reset();
+	//wdt_reset();
 	voice.say(spONE)
-	wdt_reset();
+	//wdt_reset();
 	voice.say(spINFORMATION)
-	wdt_reset();
+	//wdt_reset();
 	voice.say(spREADY); 
-  wdt_reset();
+  //wdt_reset();
   voice.sat(spbatt)
-  wdt_reset();
+  //wdt_reset();
   sayNumber(Batt1);
-  wdt_reset();
+  //wdt_reset();
   voice.say(spVOLTS);
-  wdt_reset();
+  //wdt_reset();
   voice.say(spBREAK);
-  wdt_reset();
+  //wdt_reset();
 
   voice.say(spTEMPERATURE);
-  wdt_reset();
+  //wdt_reset();
   sayNumber(batTemp); //Bat Temp
-  wdt_reset();
+  //wdt_reset();
   voice.say(spDEGREES);
-  wdt_reset();
+  //wdt_reset();
   voice.say(spCELCIUS);
-  wdt_reset();
+  //wdt_reset();
   voice.say(spBREAK);
-  wdt_reset();
+  //wdt_reset();
 
   voice.say(spTEMPERATURE);
-  wdt_reset();
+  //wdt_reset();
   sayNumber(cpuTemp); //CPU temp
-  wdt_reset();
+  //wdt_reset();
   voice.say(spDEGREES);
-  wdt_reset();
+  //wdt_reset();
   voice.say(spCELCIUS);
-  wdt_reset();
+  //wdt_reset();
   voice.say(spBREAK);
 
 
-  wdt_reset();
+  //wdt_reset();
   voice.say(spRADIOS);
-  wdt_reset();
+  //wdt_reset();
   voice.say(spAUTOMATIC);
-  wdt_reset();
+  //wdt_reset();
   voice.say(spBREAK);
-  wdt_reset();
+  //wdt_reset();
 
   voice.say(spZONE);
-  wdt_reset();
+  //wdt_reset();
   voice.say(spONE);
-  wdt_reset();
+  //wdt_reset();
   if (Z1ERR = 1) {
 	  voice.say(spINDICATED);
-	  wdt_reset();
+	  //wdt_reset();
 	  voice.say(spALERT);
-	  wdt_reset();
+	  //wdt_reset();
   }
   else {
 	  voice.say(spNO);
-	  wdt_reset();
+	  //wdt_reset();
 	  voice.say(spERROR)
-	  wdt_reset();
+	  //wdt_reset();
   }
   voice.say(spZONE);
-  wdt_reset();
+  //wdt_reset();
   voice.say(spTWO);
-  wdt_reset();
+  //wdt_reset();
   if (Z2ERR = 1) {
 	  voice.say(spINDICATED);
-	  wdt_reset();
+	  //wdt_reset();
 	  voice.say(spALERT);
-	  wdt_reset();
+	  //wdt_reset();
   }
   else {
 	  voice.say(spNO);
-	  wdt_reset();
+	  //wdt_reset();
 	  voice.say(spERROR);
-	  wdt_reset();
+	  //wdt_reset();
   }
   voice.say(spZONE);
-  wdt_reset();
+  //wdt_reset();
   voice.say(spTHREE);
-  wdt_reset();
+  //wdt_reset();
   if (Z3ERR = 1) {
 	  voice.say(spINDICATED);
-	  wdt_reset();
+	  //wdt_reset();
 	  voice.say(spALERT);
-	  wdt_reset();
+	  //wdt_reset();
   }
   else {
 	  voice.say(spNO);
-	  wdt_reset();
+	  //wdt_reset();
 	  voice.say(spERROR);
-	  wdt_reset();
+	  //wdt_reset();
   }
   voice.say(spBREAK);
 
-  wdt_reset();
+  //wdt_reset();
  voice.say(spPROBE);
- wdt_reset();
+ //wdt_reset();
  voice.say(spTHREE);
- wdt_reset();
+ //wdt_reset();
  voice.say(spCURRENT);
- wdt_reset();
+ //wdt_reset();
  voice.say(spTOO_LOW);
- wdt_reset();
+ //wdt_reset();
  voice.say(spBREAK);
 
- wdt_reset();
+ //wdt_reset();
  voice.say(spTIME);
- wdt_reset();
+ //wdt_reset();
  sayNumber(time);
- wdt_reset();
+ //wdt_reset();
  voice.say(spREPEAT);
- wdt_reset();
+ //wdt_reset();
  voice.say(spREPEAT);
- wdt_reset();
+ //wdt_reset();
  delay(2000);
  
   }
