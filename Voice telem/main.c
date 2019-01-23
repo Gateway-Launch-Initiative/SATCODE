@@ -93,7 +93,7 @@ void setup() {
   Serial.println("GateSat-01 initializing") ;
   Serial.println("Voice DL code by Carsten Gallini") ;
   delay(2000);
-  Serial.println("GateSat-01 Is the property of ");
+  Serial.println("GateSat-01 Is the property of the Gateway Cubesat Project");
   delay(2000);
   Serial.println("Initialized") ;
   //Serial.println("") ;
@@ -117,6 +117,9 @@ void loop() {
 	initiateTX();//Initiate the decided form of TX and proceeds to approprite TX void
 }
 
+void rtc() {
+
+}
 
 void initiateTX(){
 	voice.say(spGOLF);
