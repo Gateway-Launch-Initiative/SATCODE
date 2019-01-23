@@ -11,7 +11,6 @@ int Z3ERR; //zone three error (Lower 1U of Sat)
 
 #include "voice select.c" //local voice library
 #include "talkie.h" //talkie library for voice
-//#include <avr/wdt.h> //watch dog timer library (requires Aurdrino Mega board)
 #include <Wire.h> //RTClib
 #include <RealTimeClockDS1307.h>//RTClib
 
@@ -121,134 +120,81 @@ void loop() {
 
 void initiateTX(){
 	voice.say(spGOLF);
-	//wdt_reset();
-    voice.say(spALPHA);
-	//wdt_reset();
+	voice.say(spALPHA);
 	voice.say(spTANGO);
-	//wdt_reset();
 	voice.say(spECHO);
-	//wdt_reset();
 	voice.say(spSIERRA);
-	//wdt_reset();
 	voice.sat(spALPHA);
-	//wdt_reset();
 	voice.sat(spTANGO);
-	//wdt_reset();
 	voice.say(spONE)
-	//wdt_reset();
 	voice.say(spINFORMATION)
-	//wdt_reset();
 	voice.say(spREADY);
-    //wdt_reset();
     voice.sat(spbatt)
-    //wdt_reset();
     sayNumber(Batt1);
-    //wdt_reset();
     voice.say(spVOLTS);
-    //wdt_reset();
     voice.say(spBREAK);
-    //wdt_reset();
-
-    voice.say(spTEMPERATURE);
-    //wdt_reset();
-	sayNumber(batTemp); //Bat Temp
-	//wdt_reset();
-	voice.say(spDEGREES);
-	//wdt_reset();
-	voice.say(spCELCIUS);
-	//wdt_reset();
-	voice.say(spBREAK);
-	//wdt_reset();
-
+    
 	voice.say(spTEMPERATURE);
-	//wdt_reset();
-	sayNumber(cpuTemp); //CPU temp
-	//wdt_reset();
+    sayNumber(batTemp); //Bat Temp
 	voice.say(spDEGREES);
-	//wdt_reset();
 	voice.say(spCELCIUS);
-	//wdt_reset();
 	voice.say(spBREAK);
-
-
-	//wdt_reset();
+	
+	voice.say(spTEMPERATURE);
+	sayNumber(cpuTemp); //CPU temp
+	voice.say(spDEGREES);
+	voice.say(spCELCIUS);
+	voice.say(spBREAK);
+	   	
 	voice.say(spRADIOS);
-	//wdt_reset();
 	voice.say(spAUTOMATIC);
-	//wdt_reset();
 	voice.say(spBREAK);
-	//wdt_reset();
-
+	
 	voice.say(spZONE);
-	//wdt_reset();
 	voice.say(spONE);
-	//wdt_reset();
 	if (Z1ERR = 1) {
 		voice.say(spINDICATED);
-		//wdt_reset();
 		voice.say(spALERT);
-		//wdt_reset();
 	}
 		else {
 			voice.say(spNO);
-			//wdt_reset();
-			voice.say(spERROR)
-			//wdt_reset();
+			voice.say(spERROR)	
 		}
 	voice.say(spZONE);
-	//wdt_reset();
 	voice.say(spTWO);
-	//wdt_reset();
 	if (Z2ERR = 1) {
 		voice.say(spINDICATED);
-		//wdt_reset();
 		voice.say(spALERT);
-		//wdt_reset();
 	}
 		else {
 			voice.say(spNO);
-			//wdt_reset();
 			voice.say(spERROR);
-			//wdt_reset();
+			
 		}
 	voice.say(spZONE);
-	//wdt_reset();
 	voice.say(spTHREE);
-	//wdt_reset();
-  if (Z3ERR = 1) {
+	if (Z3ERR = 1) {
 	  voice.say(spINDICATED);
-	  //wdt_reset();
 	  voice.say(spALERT);
-	  //wdt_reset();
-  }
+	  
+    }
 		else {
 			voice.say(spNO);
-			//wdt_reset();
 			voice.say(spERROR);
-			//wdt_reset();
+			
 		}
 	voice.say(spBREAK);
 
-	//wdt_reset();
 	voice.say(spPROBE);
-	//wdt_reset();
 	voice.say(spTHREE);
-	//wdt_reset();
 	voice.say(spCURRENT);
-	//wdt_reset();
 	voice.say(spTOO_LOW);
-	//wdt_reset();
 	voice.say(spBREAK);
 
-	//wdt_reset();
 	voice.say(spTIME);
-	//wdt_reset();
 	sayNumber(time);
-	//wdt_reset();
 	voice.say(spREPEAT);
-	//wdt_reset();
 	voice.say(spREPEAT);
-	//wdt_reset();
 	delay(2000);
 
   }
@@ -284,9 +230,7 @@ void Batt(){
   Serial.println(Batt1);
     }
 
-void Watchdog(){
-  //wdt_enable(WDTO_8S);
-  }
+
 
 void Solar(){
   //input Solar Cell monitoring & code here
