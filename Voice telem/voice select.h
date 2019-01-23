@@ -1,6 +1,8 @@
 
 
 #include "talkie.h"
+#include "RTCsetup.h"
+#include "main.c"
 
 Talkie voice;
 //comment out what we dont need or import more from the talkie example sketches
