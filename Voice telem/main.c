@@ -3,7 +3,7 @@ int SPKpin = 3; //Needs to be PWM pin for spk/radio output
 int Batt1;// Globalize Batt1 Variable
 int batTemp = 23; //test temp for bat temp
 int cpuTemp = 25; //test temp for CPU temp
-int time; //Time Variable
+int time=; //Time Variable
 int Z1ERR; //zone one error (Top 1U of sat)
 int Z2ERR; //zone two error (Middle 1U of sat)
 int Z3ERR; //zone three error (Lower 1U of Sat)
