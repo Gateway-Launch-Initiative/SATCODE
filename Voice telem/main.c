@@ -12,7 +12,8 @@ int Z3ERR; //zone three error (Lower 1U of Sat)
 #include "voice select.c" //local voice library
 #include "talkie.h" //talkie library for voice
 //#include <avr/wdt.h> //watch dog timer library (requires Aurdrino Mega board)
-#include "RTClib.h"
+#include <Wire.h> //RTClib
+#include <RealTimeClockDS1307.h>//RTClib
 
 /* Say any number between -999,999 and 999,999 */
 void sayNumber(long n) {
@@ -88,12 +89,22 @@ void sayLetter() {
 
 
 void setup() {
-  pinMode(SPKpin, OUTPUT) ; //this is unecessary for Talkie as it is hardcoded to 3 in Lib
+  pinMode(SPKpin, OUTPUT) ; //this is unecessary for Talkie as it is hardcoded to digital pin 3 in Lib
   Serial.begin(9600) ; //serial unnecessary except debugging as needed
   Serial.println("GateSat-01 initializing") ;
   Serial.println("Voice DL code by Carsten Gallini") ;
+  delay(2000);
+  Serial.println("GateSat-01 Is the property of ");
+  delay(2000);
   Serial.println("Initialized") ;
   //Serial.println("") ;
+  Wire.begin();
+  Serial.begin(9600);
+  pinMode(A3, OUTPUT);     //*** pin 16 (Analog pin 2) as OUTPUT   ***
+  digitalWrite(A3, HIGH);   //*** pin 16 (Analog pin 2) set to LOW  ***
+  pinMode(A2, OUTPUT);     //*** pin 17 (Analog pin 3) as OUTPUT   ***
+  digitalWrite(A2, LOW);  //*** pin 17 (Analog pin 3) set to HIGH ***
+  //*** Analog Pin settings to power RTC module ***
   voice.say(spSTART);//say start to indicate we actually started
   voice.say(spSTART);
   voice.say(spSTART);
@@ -102,7 +113,7 @@ void setup() {
 
 void loop() {
   //checksensors(); check sensor readings here
-  //modeindicator(); add mode indicator LED etc here
+  
   Batt();
   initiateTX();//Initiate the decided form of TX and proceeds to approprite TX void
   }
@@ -242,7 +253,32 @@ void initiateTX(){
 
   }
 
+  void RTC() {
+	  //RealTimeClock RTC;//=new RealTimeClock();
 
+	#define Display_Clock_Every_N_Seconds 10           // n.secs to show date/time
+	#define Display_ShortHelp_Every_N_Seconds 60       // n.secs to show hint for help
+	//#define TEST_Squarewave
+	//#define TEST_StopStart
+	//#define TEST_1224Switch
+
+	  int count = 0;
+	  char formatted[] = "00-00-00 00:00:00x";
+
+	  void setup() {
+		  
+	  }
+
+	  void loop() {
+		  if (Serial.available())
+		  {
+			  processCommand();
+		  }
+
+		  RTC.readClock();
+		  count++;
+		  if (count % Display_Clock_Every_N_Seconds == 0) {
+}
 void Batt(){
   Batt1 = analogRead(0) /10;  //correct this later with proper voltage divider code
   Serial.println(Batt1);
