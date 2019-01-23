@@ -1,7 +1,7 @@
 void ints{
 int SPKpin = 3; //Needs to be PWM pin for spk/radio output
 int Batt1;// Globalize Batt1 Variable
-int batTemp = 23; //test temp for bat temp 
+int batTemp = 23; //test temp for bat temp
 int cpuTemp = 25; //test temp for CPU temp
 int time; //Time Variable
 int Z1ERR; //zone one error (Top 1U of sat)
@@ -12,6 +12,7 @@ int Z3ERR; //zone three error (Lower 1U of Sat)
 #include "voice select.c" //local voice library
 #include "talkie.h" //talkie library for voice
 //#include <avr/wdt.h> //watch dog timer library (requires Aurdrino Mega board)
+#include "RTClib.h"
 
 /* Say any number between -999,999 and 999,999 */
 void sayNumber(long n) {
@@ -94,8 +95,8 @@ void setup() {
   Serial.println("Initialized") ;
   //Serial.println("") ;
   voice.say(spSTART);//say start to indicate we actually started
-  voice.say(spSTART);  
-  voice.say(spSTART);  
+  voice.say(spSTART);
+  voice.say(spSTART);
   delay (2000);
   }
 
@@ -126,7 +127,7 @@ void initiateTX(){
 	//wdt_reset();
 	voice.say(spINFORMATION)
 	//wdt_reset();
-	voice.say(spREADY); 
+	voice.say(spREADY);
     //wdt_reset();
     voice.sat(spbatt)
     //wdt_reset();
@@ -238,7 +239,7 @@ void initiateTX(){
 	voice.say(spREPEAT);
 	//wdt_reset();
 	delay(2000);
- 
+
   }
 
 
