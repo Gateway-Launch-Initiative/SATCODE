@@ -9,10 +9,11 @@ int Z2ERR; //zone two error (Middle 1U of sat)
 int Z3ERR; //zone three error (Lower 1U of Sat)
 }
 
-#include "voice select.c" //local voice library
+#include "voice select.h" //local voice library
 #include "talkie.h" //talkie library for voice
-#include <Wire.h> //RTClib
-#include <RealTimeClockDS1307.h>//RTClib
+#include "Wire.h" //RTClib
+#include "RealTimeClockDS1307.h"//RTClib
+#include "RTCsetup.h"
 
 /* Say any number between -999,999 and 999,999 */
 void sayNumber(long n) {
