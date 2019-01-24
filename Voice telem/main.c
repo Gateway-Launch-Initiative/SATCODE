@@ -12,8 +12,8 @@ int Z3ERR; //zone three error (Lower 1U of Sat)
 #include "voice select.h" //local voice library
 #include "talkie.h" //talkie library for voice
 #include "Wire.h" //RTClib
-#include "RealTimeClockDS1307.h"//RTClib
-#include "RTCsetup.h"
+#include "RTClib.h"//RTClib
+#include "RTCsetup.h"//local RTC setup script
 
 /* Say any number between -999,999 and 999,999 */
 void sayNumber(long n) {
