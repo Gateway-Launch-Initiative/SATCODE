@@ -1,5 +1,4 @@
-#include "vars.c"
-#include <../avr/wdt.h>
+#include "vars.c""
 
 void dash() {
   analogWrite(SPKpin, 128) ;//128 default
@@ -46,22 +45,19 @@ void sendmsg(char *str) {
 }
 
 void setup() {
-  wdt_disable();
-  wdt_enable (WDTO_8S);//watchdog
   pinMode(SPKpin, OUTPUT) ;
   Serial.begin(9600) ; //serial unnecessary except debugging as needed
   Serial.println("GateSat-01 initializing") ;
-  Serial.println("CW DL code by Eric William") ;
+  Serial.println("GateSat-01 is property of the Gateway Cubesat Project") ;
   Serial.println("...") ; //Put credits for other things here.
   Serial.println("Initialized") ;
   //Serial.println("") ;
   }
 
 void loop() {
-  resetWatchdog();
+  
   //checksensors(); check sensor readings here
   decidemode();//decide mode of transmit: CW vs Tone depednding on interval
-  //modeindicator(); add mode indicator LED etc here (DO WE WANT TO GET RID OF THIS? AS IT WILL BE IN SPACE.
   initiateTX();//Initiate the decided form of TX and proceeds to approprite TX void
   }
 
@@ -82,47 +78,30 @@ void initiateTX(){
   else TransmitTone(); //Tone transmit mode based on sensor reading
 }
 
-void resetWatchdog() {
-	wdt_reset();
-}
-
 void TransmitMorse(){//Make sure these are all CAPS or will not TX
    sendmsg("?????") ; //Preamble to begin receiving
-   resetWatchdog();
    sendmsg("GATESAT1/") ;
-   resetWatchdog();
    sendmsg("OS,OK/") ;
-   resetWatchdog();
    sendmsg("SAFEMODE,NO/") ;
-   resetWatchdog();
-   sendmsg("WATCHDOG,4/") ;
-   resetWatchdog();
-   sendmsg("ITEMP,0C/ ") ;
-   resetWatchdog();
+   sendmsg("CORETEMP,") ;
+   sendmsg(coretemp "/")
    sendmsg("LUX,22/ ") ;
-   resetWatchdog();
    sendmsg("TELEMETRY,OK/ ") ;
-   resetWatchdog();
-   sendmsg("ANTENNA,DEP/") ;
-   resetWatchdog();
    sendmsg("PV,520MV/") ;
-   resetWatchdog();
-   sendmsg("BATT1,620MV/") ;
-   resetWatchdog();
-   sendmsg("BUSA,4MA/") ;
-   resetWatchdog();
+   sendmsg("BATT1,/") ;
+   sendmsg(batt1 "/");
+   sendmsg("BUS1,") ;
+   sendmsg(busone "/")
    sendmsg("RSSI,4DBM/") ;
-   resetWatchdog();
    //All this code needs to be replaced with the INT to CHAR values from monitoring/systems
-   //sendmsg (Batt1);
+   //sendmsg ();
    delay(3000) ;
    }
+
 void Batt(){
   //input battery check/monitoring code here
   }
-void Watchdog(){
-  //input Watchdog code here
-  }
+
 void Solar(){
   //input Solar Cell monitoring & code here
   }
