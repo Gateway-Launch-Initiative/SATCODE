@@ -4,9 +4,9 @@ int Batt1;// Globalize Batt1 Variable
 int batTemp = 23; //test temp for bat temp
 int cpuTemp = 25; //test temp for CPU temp
 int time=; //Time Variable
-int Z1ERR; //zone one error (Top 1U of sat)
-int Z2ERR; //zone two error (Middle 1U of sat)
-int Z3ERR; //zone three error (Lower 1U of Sat)
+int Z1ERR; //zone one error sector (Top 1U of sat)
+int Z2ERR; //zone two error sector (Middle 1U of sat)
+int Z3ERR; //zone three error sector (Lower 1U of Sat)
 }
 
 #include "voice select.h" //local voice library
@@ -79,10 +79,10 @@ void sayNumber(long n) {
 
 //Say any letter from A to Z
 void sayLetter() {
-	case a: voice.say(spALPHA);
-	case b: voice.say(spBRAVO);
-	case c: voice.SAY(spCHARLIE);
-	case d: voice.say(spDELTA);
+	case 'a': voice.say(spALPHA);
+	case 'b': voice.say(spBRAVO);
+	case 'c': voice.SAY(spCHARLIE);
+	case 'd': voice.say(spDELTA);
 		//will add more once tested as I dont think its working as the A,B,C, and D vals arnt highlighting unlike the numbers.
 
 }
@@ -92,19 +92,18 @@ void setup() {
   pinMode(SPKpin, OUTPUT) ; //this is unecessary for Talkie as it is hardcoded to digital pin 3 in Lib
   Serial.begin(9600) ; //serial unnecessary except debugging as needed
   Serial.println("GateSat-01 initializing") ;
+  Wire.begin();
+  pinMode(A3, OUTPUT);     //*** pin 16 (Analog pin 2) as OUTPUT   ***
+  digitalWrite(A3, HIGH);   //*** pin 16 (Analog pin 2) set to LOW  ***
+  pinMode(A2, OUTPUT);     //*** pin 17 (Analog pin 3) as OUTPUT   ***
+  digitalWrite(A2, LOW);  //*** pin 17 (Analog pin 3) set to HIGH ***
+  //*** Analog Pin settings to power RTC module ***
   Serial.println("Voice DL code by Carsten Gallini") ;
   delay(2000);
   Serial.println("GateSat-01 Is the property of the Gateway Cubesat Project");
   delay(2000);
   Serial.println("Initialized") ;
   //Serial.println("") ;
-  Wire.begin();
-  Serial.begin(9600);
-  pinMode(A3, OUTPUT);     //*** pin 16 (Analog pin 2) as OUTPUT   ***
-  digitalWrite(A3, HIGH);   //*** pin 16 (Analog pin 2) set to LOW  ***
-  pinMode(A2, OUTPUT);     //*** pin 17 (Analog pin 3) as OUTPUT   ***
-  digitalWrite(A2, LOW);  //*** pin 17 (Analog pin 3) set to HIGH ***
-  //*** Analog Pin settings to power RTC module ***
   voice.say(spSTART);//say start to indicate we actually started
   voice.say(spSTART);
   voice.say(spSTART);
@@ -203,7 +202,20 @@ void initiateTX(){
 
   }
 
-  
+void Error Checks() {
+	if (battemp < 60) {
+		Z1ERR = 1
+	}
+	else {
+		Z1ERR = 0
+	}
+	//if (sensor < crit val){
+	//    *Zone Number* = 1
+	//}
+	//else{
+	//     *Zone Number* = 0
+	//}
+}
 
 void Solar(){
   //input Solar Cell monitoring & code here
