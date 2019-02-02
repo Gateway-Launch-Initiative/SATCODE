@@ -1,4 +1,4 @@
-void ints{
+
 int SPKpin = 3; //Needs to be PWM pin for spk/radio output
 int Batt1;// Globalize Batt1 Variable
 int batTemp = 39; //test temp for bat temp
@@ -7,7 +7,7 @@ int time=; //Time Variable
 int Z1ERR; //zone one error sector (Top 1U of sat)
 int Z2ERR; //zone two error sector (Middle 1U of sat)
 int Z3ERR; //zone three error sector (Lower 1U of Sat)
-}
+
 
 #include "voice select.h" //local voice library
 #include "talkie.h" //talkie library for voice
