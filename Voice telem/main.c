@@ -116,7 +116,10 @@ void setup() {
   Serial.print("Payload size: ");
   Serial.println(PAYLOAD_SIZE);
   delay(2000);
-  Wire.beginTransmission(41); // transmit to device #41
+  Wire.beginTransmission(41); // transmit to device A
+  Wire.write(1);
+  Wire.endTransmission();    // stop transmitting
+  Wire.beginTransmission(42); // transmit to device B
   Wire.write(1);
   Wire.endTransmission();    // stop transmitting
   Serial.println("Initialized") ;
