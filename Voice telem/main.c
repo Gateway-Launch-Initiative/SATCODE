@@ -15,6 +15,13 @@ int Z3ERR; //zone three error sector (Lower 1U of Sat)
 #include "RTClib.h"//RTClib
 #include "RTCsetup.h"//local RTC setup script
 
+#define PAYLOAD_SIZE 2 // how many bytes to expect from each I2C salve node
+#define NODE_MAX 2 // maximum number of slave nodes (I2C addresses) to probe
+#define START_NODE 41 // The starting I2C address of slave nodes
+#define NODE_READ_DELAY 1000 // Some delay between I2C node reads
+
+int nodePayload[PAYLOAD_SIZE];
+
 /* Say any number between -999,999 and 999,999 */
 void sayNumber(long n) {
 	if (n < 0) {
@@ -101,7 +108,17 @@ void setup() {
   Serial.println("Voice DL code by Carsten Gallini") ;
   delay(2000);
   Serial.println("GateSat-01 Is the property of the Gateway Cubesat Project");
+  delay(2000)
+  Serial.println("This is the master read node.");
+  delay(1000)
+  Serial.print("Maximum Slave Nodes: ");
+  Serial.println(NODE_MAX);
+  Serial.print("Payload size: ");
+  Serial.println(PAYLOAD_SIZE);
   delay(2000);
+  Wire.beginTransmission(41); // transmit to device #41
+  Wire.write(1);
+  Wire.endTransmission();    // stop transmitting
   Serial.println("Initialized") ;
   //Serial.println("") ;
   voice.say(spSTART);//say start to indicate we actually started
