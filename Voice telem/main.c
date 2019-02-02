@@ -147,18 +147,18 @@ void initiateTX(){
 	voice.say(spTANGO);
 	voice.say(spECHO);
 	voice.say(spSIERRA);
-	voice.sat(spALPHA);
-	voice.sat(spTANGO);
+	voice.say(spALPHA);
+	voice.say(spTANGO);
 	voice.say(spONE)
 	voice.say(spINFORMATION)
 	voice.say(spREADY);
-    voice.sat(spbatt)
-    sayNumber(Batt1);
-    voice.say(spVOLTS);
-    voice.say(spBREAK);
-    
+	voice.say(spbatt)
+	sayNumber(Batt1);
+	voice.say(spVOLTS);
+	voice.say(spBREAK);
+	
 	voice.say(spTEMPERATURE);
-    sayNumber(batTemp); //Bat Temp
+	sayNumber(batTemp); //Bat Temp
 	voice.say(spDEGREES);
 	voice.say(spCELCIUS);
 	voice.say(spBREAK);
@@ -168,7 +168,7 @@ void initiateTX(){
 	voice.say(spDEGREES);
 	voice.say(spCELCIUS);
 	voice.say(spBREAK);
-	   	
+		
 	voice.say(spRADIOS);
 	voice.say(spAUTOMATIC);
 	voice.say(spBREAK);
@@ -200,7 +200,7 @@ void initiateTX(){
 	  voice.say(spINDICATED);
 	  voice.say(spALERT);
 	  
-    }
+	}
 		else {
 			voice.say(spNO);
 			voice.say(spERROR);
