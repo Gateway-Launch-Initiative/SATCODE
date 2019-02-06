@@ -95,7 +95,7 @@ void sayLetter() {
 
 
 void setup() {
-  pinMode(SPKpin, OUTPUT) ; //this is unecessary for Talkie as it is hardcoded to digital pin 3 in Lib
+  pinMode(SPKpin, OUTPUT) ; //this is unnecessary for Talkie as it is hard coded to digital pin 3 in Lib
   Serial.begin(9600) ; //serial unnecessary except debugging as needed
   Serial.println("GateSat-01 initializing") ;
   Wire.begin();
@@ -114,6 +114,7 @@ void setup() {
   Serial.println(NODE_MAX);
   Serial.print("Payload size: ");
   Serial.println(PAYLOAD_SIZE);
+  voice.say(spWHAT_IS_THY_BIDDING);
   delay(2000);
   Wire.beginTransmission(41); // transmit to device A
   Wire.write(1);
@@ -121,6 +122,10 @@ void setup() {
   Wire.beginTransmission(42); // transmit to device B
   Wire.write(1);
   Wire.endTransmission();    // stop transmitting
+  Wire.beginTransmission(43); // transmit to device C
+  Wire.write(1);
+  Wire.endTransmission();    // stop transmitting
+  voice.say(spREADY_TO_START);
   Serial.println("Initialized") ;
   //Serial.println("") ;
   voice.say(spSTART);//say start to indicate we actually started
@@ -133,10 +138,14 @@ void loop() {
   //checksensors(); check sensor readings here
 	RTC.readClock();
 	Batt();
-	initiateTX();//Initiate the decided form of TX and proceeds to approprite TX void
+	TXswitch();//Initiate the decided form of TX and proceeds to appropriate TX void
 }
 
 void rtc() {
+
+}
+
+void TXswitch() {
 
 }
 
@@ -148,20 +157,25 @@ void initiateTX(){
 	voice.say(spSIERRA);
 	voice.say(spALPHA);
 	voice.say(spTANGO);
-	voice.say(spONE)
-	voice.say(spINFORMATION)
+	voice.say(spONE);
+	voice.say(spINFORMATION);
 	voice.say(spREADY);
-	voice.say(spbatt)
+	delay(2000);
+
+	voice.say(spPOWER);
+	voice.say(spZONE);
+	voice.say(spONE);
 	sayNumber(Batt1);
 	voice.say(spVOLTS);
-	voice.say(spBREAK);
-	
+		
 	voice.say(spTEMPERATURE);
 	sayNumber(batTemp); //Bat Temp
 	voice.say(spDEGREES);
 	voice.say(spCELCIUS);
 	voice.say(spBREAK);
 	
+	voice.say(spCONTROL);
+	voice.say(spZONE);
 	voice.say(spTEMPERATURE);
 	sayNumber(cpuTemp); //CPU temp
 	voice.say(spDEGREES);
@@ -182,6 +196,7 @@ void initiateTX(){
 			voice.say(spNO);
 			voice.say(spERROR)	
 		}
+	delay(1000);
 	voice.say(spZONE);
 	voice.say(spTWO);
 	if (Z2ERR = 1) {
@@ -193,6 +208,7 @@ void initiateTX(){
 			voice.say(spERROR);
 			
 		}
+	delay(1000);
 	voice.say(spZONE);
 	voice.say(spTHREE);
 	if (Z3ERR = 1) {
@@ -207,21 +223,30 @@ void initiateTX(){
 		}
 	voice.say(spBREAK);
 
-	voice.say(spPROBE);
+	/*voice.say(spPROBE);
 	voice.say(spTHREE);
 	voice.say(spCURRENT);
 	voice.say(spTOO_LOW);
-	voice.say(spBREAK);
+	voice.say(spBREAK);*/
 
+	voice.say(spTHE);
 	voice.say(spTIME);
+	voice.say(spIS);
 	sayNumber(time);
+	delay(1000);
 	voice.say(spREPEAT);
 	voice.say(spREPEAT);
-	delay(2000);
+	delay(3000);
 
   }
 
-void Error Checks() {
+void initiateTX2() {
+	voice.say(spOPERATOR);
+	voice.say(spABORT);
+	initiateTX2();
+}
+
+void Error_Checks() {
 	if (battemp < 60) {
 		Z1ERR = 1
 	}

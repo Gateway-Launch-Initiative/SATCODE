@@ -1,6 +1,6 @@
 #include <Wire.h>
 
-#define NODE_ADDRESS 41  // Change this unique address for each I2C slave node
+#define NODE_ADDRESS 43  // Change this unique address for each I2C slave node
 #define PAYLOAD_SIZE 2 // Number of bytes  expected to be received by the master I2C node
 int x = 0;
 byte nodePayload[PAYLOAD_SIZE];
@@ -18,7 +18,7 @@ void setup()
 	Serial.println(PAYLOAD_SIZE);
 	Wire.begin(NODE_ADDRESS);  // Activate I2C network
 	Wire.onReceive(receiveEvent);
-	Wire.onRequest(requestEvent); // Request attention of master node
+	//Wire.onRequest(requestEvent); // Request attention of master node
 }
 
 void loop()

@@ -18,7 +18,7 @@ void setup()
 	Serial.println(PAYLOAD_SIZE);
 	Wire.begin(NODE_ADDRESS);  // Activate I2C network
 	Wire.onReceive(receiveEvent);
-	Wire.onRequest(requestEvent); // Request attention of master node
+	//Wire.onRequest(requestEvent); // Request attention of master node
 }
 
 void loop()
