@@ -16,7 +16,7 @@ int Z3ERR; //zone three error sector (Lower 1U of Sat)
 #include "RTCsetup.h"//local RTC setup script
 
 #define PAYLOAD_SIZE 2 // how many bytes to expect from each I2C salve node
-#define NODE_MAX 2 // maximum number of slave nodes (I2C addresses) to probe
+#define NODE_MAX 3 // maximum number of slave nodes (I2C addresses) to probe
 #define START_NODE 41 // The starting I2C address of slave nodes
 #define NODE_READ_DELAY 1000 // Some delay between I2C node reads
 
@@ -90,8 +90,7 @@ void sayLetter() {
 	case 'b': voice.say(spBRAVO);
 	case 'c': voice.SAY(spCHARLIE);
 	case 'd': voice.say(spDELTA);
-		//will add more once tested as I dont think its working as the A,B,C, and D vals arnt highlighting unlike the numbers.
-
+		//will add more once tested.
 }
 
 
