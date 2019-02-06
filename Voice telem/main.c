@@ -1,4 +1,3 @@
-
 int SPKpin = 3; //Needs to be PWM pin for spk/radio output
 int Batt1;// Globalize Batt1 Variable
 int batTemp = 39; //test temp for bat temp
