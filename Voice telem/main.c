@@ -6,7 +6,7 @@ int time; //Time Variable
 int Z1ERR=0; //zone one error sector (Top 1U of sat)
 int Z2ERR=0; //zone two error sector (Middle 1U of sat)
 int Z3ERR=0; //zone three error sector (Lower 1U of Sat)
-int abort=0;
+int abort=0; //abort code
 
 #include "voice select.h" //local voice library
 #include "talkie.h" //talkie library for voice
@@ -98,11 +98,11 @@ void setup() {
   Serial.begin(9600) ; //serial unnecessary except debugging as needed
   Serial.println("GateSat-01 initializing") ;
   Wire.begin();
-  pinMode(A3, OUTPUT);     //*** pin 16 (Analog pin 2) as OUTPUT   ***
-  digitalWrite(A3, HIGH);   //*** pin 16 (Analog pin 2) set to LOW  ***
-  pinMode(A2, OUTPUT);     //*** pin 17 (Analog pin 3) as OUTPUT   ***
-  digitalWrite(A2, LOW);  //*** pin 17 (Analog pin 3) set to HIGH ***
-  //*** Analog Pin settings to power RTC module ***
+  //pinMode(A3, OUTPUT);     //*** pin 16 (Analog pin 2) as OUTPUT   ***
+  //digitalWrite(A3, HIGH);   //*** pin 16 (Analog pin 2) set to LOW  ***
+  //pinMode(A2, OUTPUT);     //*** pin 17 (Analog pin 3) as OUTPUT   ***
+  //digitalWrite(A2, LOW);  //*** pin 17 (Analog pin 3) set to HIGH ***
+  ////*** Analog Pin settings to power RTC module ***
   Serial.println("Voice DL code by Carsten Gallini") ;
   delay(2000);
   Serial.println("GateSat-01 Is the property of the Gateway Cubesat Project");
@@ -145,7 +145,7 @@ void rtc() {
 }
 
 void TXswitch() {
-if (abort=1)
+if (abort=1001)
 {
 	initiateTX2();
 	Serial.println("WARNING MISSION ABORT!");
