@@ -9,7 +9,7 @@ int busone
 int coretemp
 struct t_mtab { char c, pat; } ;
 struct t_mtab morsetab[] = {
-  	{'.', 106},
+	{'.', 106},
 	{',', 115},
 	{'?', 76},
 	{'/', 41},

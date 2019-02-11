@@ -95,7 +95,7 @@ void sayLetter() {
 
 void setup() {
   pinMode(SPKpin, OUTPUT) ; //this is unnecessary for Talkie as it is hard coded to digital pin 3 in Lib
-  Serial.begin(9600) ; //serial unnecessary except debugging as needed
+  Serial.begin(9600) ;
   Serial.println("GateSat-01 initializing") ;
   Wire.begin();
   //pinMode(A3, OUTPUT);     //*** pin 16 (Analog pin 2) as OUTPUT   ***
@@ -109,7 +109,7 @@ void setup() {
   delay(2000)
   Serial.println("This is the master read node.");
   delay(1000)
-  Serial.print("Maximum Slave Nodes: ");
+  Serial.print("Slave Nodes: ");
   Serial.println(NODE_MAX);
   Serial.print("Payload size: ");
   Serial.println(PAYLOAD_SIZE);
