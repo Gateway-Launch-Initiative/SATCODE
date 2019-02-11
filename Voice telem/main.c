@@ -113,7 +113,6 @@ void setup() {
   Serial.println(NODE_MAX);
   Serial.print("Payload size: ");
   Serial.println(PAYLOAD_SIZE);
-  voice.say(spWHAT_IS_THY_BIDDING);
   delay(2000);
   Wire.beginTransmission(41); // transmit to device A
   Wire.write(1);
