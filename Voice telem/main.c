@@ -1,25 +1,22 @@
-int SPKpin = 3; //Needs to be PWM pin for spk/radio output
+int SPKpin = 3; //Needs to be pin 3 for spk/radio output
 int Batt1;// Globalize Batt1 Variable
 int batTemp = 39; //test temp for bat temp
 int cpuTemp = 43; //test temp for CPU temp
-int time; //Time Variable
+int timeh; //Time Variables
+int times;
+int timem;
+int date;
 int Z1ERR=0; //zone one error sector (Top 1U of sat)
 int Z2ERR=0; //zone two error sector (Middle 1U of sat)
 int Z3ERR=0; //zone three error sector (Lower 1U of Sat)
 int abort=0; //abort code
+
 
 #include "voice select.h" //local voice library
 #include "talkie.h" //talkie library for voice
 #include "Wire.h" //RTClib
 #include "RTClib.h"//RTClib
 #include "RTCsetup.h"//local RTC setup script
-
-#define PAYLOAD_SIZE 2 // how many bytes to expect from each I2C salve node
-#define NODE_MAX 3 // maximum number of slave nodes (I2C addresses) to probe
-#define START_NODE 41 // The starting I2C address of slave nodes
-#define NODE_READ_DELAY 1000 // Some delay between I2C node reads
-
-int nodePayload[PAYLOAD_SIZE];
 
 /* Say any number between -999,999 and 999,999 */
 void sayNumber(long n) {
@@ -94,42 +91,27 @@ void sayLetter() {
 
 
 void setup() {
-  pinMode(SPKpin, OUTPUT) ; //this is unnecessary for Talkie as it is hard coded to digital pin 3 in Lib
-  Serial.begin(9600) ;
-  Serial.println("GateSat-01 initializing") ;
-  Wire.begin();
-  //pinMode(A3, OUTPUT);     //*** pin 16 (Analog pin 2) as OUTPUT   ***
-  //digitalWrite(A3, HIGH);   //*** pin 16 (Analog pin 2) set to LOW  ***
-  //pinMode(A2, OUTPUT);     //*** pin 17 (Analog pin 3) as OUTPUT   ***
-  //digitalWrite(A2, LOW);  //*** pin 17 (Analog pin 3) set to HIGH ***
-  ////*** Analog Pin settings to power RTC module ***
-  Serial.println("Voice DL code by Carsten Gallini") ;
-  delay(2000);
-  Serial.println("GateSat-01 Is the property of the Gateway Cubesat Project");
-  delay(2000)
-  Serial.println("This is the master read node.");
-  delay(1000)
-  Serial.print("Slave Nodes: ");
-  Serial.println(NODE_MAX);
-  Serial.print("Payload size: ");
-  Serial.println(PAYLOAD_SIZE);
-  delay(2000);
-  Wire.beginTransmission(41); // transmit to device A
-  Wire.write(1);
-  Wire.endTransmission();    // stop transmitting
-  Wire.beginTransmission(42); // transmit to device B
-  Wire.write(1);
-  Wire.endTransmission();    // stop transmitting
-  Wire.beginTransmission(43); // transmit to device C
-  Wire.write(1);
-  Wire.endTransmission();    // stop transmitting
-  voice.say(spREADY_TO_START);
-  Serial.println("Initialized") ;
-  //Serial.println("") ;
-  voice.say(spSTART);//say start to indicate we actually started
-  voice.say(spSTART);
-  voice.say(spSTART);
-  delay (2000);
+	pinMode(SPKpin, OUTPUT) ; //this is unnecessary for Talkie as it is hard coded to digital pin 3 in Lib
+	Serial.begin(9600) ;
+	Serial.println("GateSat-01 initializing") ;
+	Wire.begin();
+	//pinMode(A3, OUTPUT);     //*** pin 16 (Analog pin 2) as OUTPUT   ***
+	//digitalWrite(A3, HIGH);   //*** pin 16 (Analog pin 2) set to LOW  ***
+	//pinMode(A2, OUTPUT);     //*** pin 17 (Analog pin 3) as OUTPUT   ***
+	//digitalWrite(A2, LOW);  //*** pin 17 (Analog pin 3) set to HIGH ***
+	////*** Analog Pin settings to power RTC module ***
+	Serial.println("Voice DL code by Carsten Gallini") ;
+	delay(2000);
+	Serial.println("GateSat-01 Is the property of the Gateway Cubesat Project");
+	delay(2000)
+	RTC.switchTo24h();
+	voice.say(spREADY_TO_START);
+	Serial.println("Initialized") ;
+	//Serial.println("") ;
+	voice.say(spSTART);//say start to indicate we started
+	voice.say(spSTART);
+	voice.say(spSTART);
+	delay (2000);
   }
 
 void loop() {
@@ -137,10 +119,14 @@ void loop() {
 	RTC.readClock();
 	Batt();
 	TXswitch();//Initiate the decided form of TX and proceeds to appropriate TX void
+	rtc();
 }
 
 void rtc() {
-
+	RTC.getDate(date);
+	RTC.getHour(timeh);
+	RTC.getMinutes(timem);
+	RTC.getSeconds(times);
 }
 
 void TXswitch() {
@@ -234,11 +220,14 @@ void initiateTX(){
 	voice.say(spCURRENT);
 	voice.say(spTOO_LOW);
 	voice.say(spBREAK);*/
-
+	RTC();
 	voice.say(spTHE);
 	voice.say(spTIME);
 	voice.say(spIS);
-	sayNumber(time);
+	sayNumber(timeh);
+	sayNumber(timem);
+	voice.say(spON);
+	sayNumber(date);
 	delay(1000);
 	voice.say(spREPEAT);
 	voice.say(spREPEAT);
@@ -249,7 +238,6 @@ void initiateTX(){
 void initiateTX2() {
 	voice.say(spOPERATOR);
 	voice.say(spABORT);
-	initiateTX2();
 }
 
 void Error_Checks() {
@@ -266,7 +254,3 @@ void Error_Checks() {
 	//     *Zone Number* = 0
 	//}
 }
-
-void Solar(){
-  //input Solar Cell monitoring & code here
-  }
