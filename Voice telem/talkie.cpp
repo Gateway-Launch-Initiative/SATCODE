@@ -71,7 +71,7 @@ void Talkie::say(uint8_t* addr) {
 		// 
 		// Enable the speech system whenever say() is called.
 		
-		pinMode(3,OUTPUT);
+		pinMode(9,OUTPUT);
 		// Timer 2 set up as a 62500Hz PWM.
 		//
 		// The PWM 'buzz' is well above human hearing range and is
