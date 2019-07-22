@@ -1,4 +1,4 @@
-int SPKpin = 3; //Needs to be pin 3 for spk/radio output
+int SPKpin = 9; //Needs to be pin 3 for spk/radio output
 int Batt1;// Globalize Batt1 Variable
 int batTemp = 39; //test temp for bat temp
 int cpuTemp = 43; //test temp for CPU temp
@@ -14,9 +14,9 @@ int abort=0; //abort code
 
 #include "voice select.h" //local voice library
 #include "talkie.h" //talkie library for voice
-#include "Wire.h" //RTClib
-#include "RTClib.h"//RTClib
-#include "RTCsetup.h"//local RTC setup script
+//#include "Wire.h" //RTClib
+//#include "RTClib.h"//RTClib
+//#include "RTCsetup.h"//local RTC setup script
 
 /* Say any number between -999,999 and 999,999 */
 void sayNumber(long n) {
@@ -91,7 +91,7 @@ void sayLetter() {
 
 
 void setup() {
-	pinMode(SPKpin, OUTPUT) ; //this is unnecessary for Talkie as it is hard coded to digital pin 3 in Lib
+	pinMode(SPKpin, OUTPUT) ; //this is unnecessary for Talkie as it is hard coded to digital pin 9 in Lib
 	Serial.begin(9600) ;
 	Serial.println("GateSat-01 initializing") ;
 	Wire.begin();
@@ -122,13 +122,13 @@ void loop() {
 	rtc();
 }
 
-void rtc() {
+/*void rtc() {
 	RTC.getDate(date);
 	RTC.getHour(timeh);
 	RTC.getMinutes(timem);
 	RTC.getSeconds(times);
 }
-
+*/
 void TXswitch() {
 if (abort=1001)
 {
@@ -220,7 +220,7 @@ void initiateTX(){
 	voice.say(spCURRENT);
 	voice.say(spTOO_LOW);
 	voice.say(spBREAK);*/
-	RTC();
+	//RTC();
 	voice.say(spTHE);
 	voice.say(spTIME);
 	voice.say(spIS);
