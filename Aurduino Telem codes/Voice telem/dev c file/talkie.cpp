@@ -155,22 +155,22 @@ ISR(TIMER1_COMPA_vect) {
   OCR2B = nextPwm;
   sei();
   if (synthPeriod) {
-    // Voiced source
-    if (periodCounter < synthPeriod) {
-      periodCounter++;
-    } else {
-      periodCounter = 0;
-    }
-    if (periodCounter < CHIRP_SIZE) {
-      u10 = ((chirp[periodCounter]) * (uint32_t) synthEnergy) >> 8;
-    } else {
-      u10 = 0;
-    }
+	// Voiced source
+	if (periodCounter < synthPeriod) {
+	  periodCounter++;
+	} else {
+	  periodCounter = 0;
+	}
+	if (periodCounter < CHIRP_SIZE) {
+	  u10 = ((chirp[periodCounter]) * (uint32_t) synthEnergy) >> 8;
+	} else {
+	  u10 = 0;
+	}
   } else {
-    // Unvoiced source
-    static uint16_t synthRand = 1;
-    synthRand = (synthRand >> 1) ^ ((synthRand & 1) ? 0xB800 : 0);
-    u10 = (synthRand & 1) ? synthEnergy : -synthEnergy;
+	// Unvoiced source
+	static uint16_t synthRand = 1;
+	synthRand = (synthRand >> 1) ^ ((synthRand & 1) ? 0xB800 : 0);
+	u10 = (synthRand & 1) ? synthEnergy : -synthEnergy;
   }
   // Lattice filter forward path
   u9 = u10 - (((int16_t)synthK10*x9) >> 7);
